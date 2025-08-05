@@ -27,7 +27,7 @@ Search..." rightIcon={AiOutlineSearch} className='hidden lg:inline' /></form>
 
 
           <Link to='/signIn'> <Button
-            className="color='blue' ">Sign In</Button>
+            className="color='blue' " outline>Sign In</Button>
           </Link>
 
 
