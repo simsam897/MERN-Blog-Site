@@ -13,7 +13,7 @@ function Header() {
 
       <Navbar className='border-b-2'>
 
-        <Link to="/" className='w-100px h-100px'> <img className='w-[50px] h-[50px]  dark:bg-gray-900 rounded-2xl' src="Colorful Stack Logo for StackVerge.png" alt="" /></Link>
+        <Link to="/" className='w-100px h-100px'> <img className='w-[50px] h-[50px]  dark:bg-gray-900 rounded-2xl' src="ChatGPT Image Aug 10, 2025, 09_59_44 PM.png" alt="" /></Link>
 
         <form > <TextInput type="text" placeholder="
 Search..." rightIcon={AiOutlineSearch} className='hidden lg:inline' /></form>
