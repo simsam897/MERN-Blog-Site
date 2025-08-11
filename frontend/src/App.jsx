@@ -8,6 +8,7 @@ import Dashboard from './Pages/Dashboard'
 import SignUp from './Pages/SignUp'
 import SignIn from './Pages/SignIn'
 import Projects from './Pages/Projects'
+import FooterComp from './Pages/FooterComp'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
 
         </Routes>
+        <FooterComp />
       </BrowserRouter>
 
     </>
