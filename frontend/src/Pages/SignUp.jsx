@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, TextInput, Alert, Spinner } from 'flowbite-react';
-
+import OAuth from '../components/OAuth';
 const SignUp = () => {
   const [formData, setFormData] = useState({})
   const [errorMessage, setErrorMessage] = useState(null);
@@ -99,7 +99,7 @@ const SignUp = () => {
                       <span className='p-3'>Loading..</span>  </>) : "sign Up"}
               </Button>
 
-
+              <OAuth />
 
 
             </form>

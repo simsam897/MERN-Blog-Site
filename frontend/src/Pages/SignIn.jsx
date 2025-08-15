@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { signInFailure, signInSuccess, signInStart } from '../redux/Slice/userSlice'
 
 import { useDispatch, useSelector } from "react-redux"
+import OAuth from '../components/OAuth'
 const SignIn = () => {
   const [formData, setFormData] = useState({})
   const { loading, error: errorMessage } = useSelector(state => state.user)
@@ -21,6 +22,7 @@ const SignIn = () => {
     e.preventDefault()
     if (!formData.email || !formData.password) {
       return dispatch(signInFailure('Please fill all the fields'))
+      
     }
     try {
       dispatch(signInStart())
@@ -97,7 +99,7 @@ const SignIn = () => {
             </Button>
 
 
-
+            <OAuth />
 
           </form>
 
