@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Navbar, Button } from 'flowbite-react'
+import { Navbar, Button, Dropdown, Avatar } from 'flowbite-react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { FaMoon } from 'react-icons/fa'
 import { TextInput } from 'flowbite-react'
-import { NavbarToggle, NavbarCollapse, NavbarLink } from 'flowbite-react';
+import { NavbarToggle, NavbarCollapse, NavbarLink, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-react'
+import { useSelector } from 'react-redux'
 function Header() {
   const path = useLocation().pathname;
+  const { currentUser } = useSelector(state => state.user)
   return (
     <>
 
@@ -25,17 +27,37 @@ Search..." rightIcon={AiOutlineSearch} className='hidden lg:inline' /></form>
 
           <Button className='w-12 h-10 hidden md:inline lg:inline color="gray" pill '> <FaMoon /> </Button>
 
+          {currentUser ? (
+            <Dropdown arrowIcon={false} inline label={
+              <Avatar alt="user" img={currentUser.profilePicture} rounded />
+            }>
+              <DropdownHeader>
+                <span className='block text-sm font-medium text-red-500'>@{currentUser.username}</span>
+                <span className='block text-sm font-medium truncate'>{currentUser.email}</span>
+              </DropdownHeader>
+              <Link to={'/dashboard?tab=profile'}>
+                <DropdownItem>Profie</DropdownItem>
+              </Link>
+              <DropdownDivider />
+              <DropdownItem>Sign out</DropdownItem>
 
-          <Link to='/signIn'> <Button
-            className="color='blue' " outline>Sign In</Button>
-          </Link>
+            </Dropdown>
+          ) :
+            (
+
+              <Link to='/signIn'> <Button
+                className="color='blue' " outline>Sign In</Button>
+              </Link>
+            )
+          }
+
 
 
 
 
           <NavbarToggle />
 
-        </div>
+        </div >
 
         <NavbarCollapse>
           <NavbarLink active={path === '/'} as={'div'}>
@@ -61,4 +83,4 @@ Search..." rightIcon={AiOutlineSearch} className='hidden lg:inline' /></form>
   )
 }
 
-export default Header
+export default Header;
