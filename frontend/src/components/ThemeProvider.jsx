@@ -5,7 +5,7 @@ const ThemeProvider = ({ children }) => {
   return (
     <div className={theme === "dark"
       ? "bg-black text-gray-200"
-      : "bg-white text-gray-700"}>
+      : "bg-gray-900 text-gray-700"}>
       {children}
 
 
