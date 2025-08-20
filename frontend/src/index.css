@@ -1,3 +1,11 @@
 @import "tailwindcss";
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
+
+
+
+@theme {
+  --dark: class;
+  --color-premium-dark: #19A1A;
+  --color-premium-blue: #374151;
+}

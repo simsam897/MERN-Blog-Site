@@ -5,17 +5,19 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { FaMoon } from 'react-icons/fa'
 import { TextInput } from 'flowbite-react'
 import { NavbarToggle, NavbarCollapse, NavbarLink, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleTheme } from '../redux/theme/themeSlice'
 function Header() {
   const path = useLocation().pathname;
+  const dispatch = useDispatch()
   const { currentUser } = useSelector(state => state.user)
   return (
     <>
 
 
-      <Navbar className='border-b-2'>
+      <Navbar className='border-b-2 bg-premium-blue dark:bg-premium-dark' >
 
-        <Link to="/" className='w-100px h-100px'> <img className='w-[50px] h-[50px]  dark:bg-gray-900 rounded-2xl' src="ChatGPT Image Aug 10, 2025, 09_59_44 PM.png" alt="" /></Link>
+        <Link to="/" className='w-100px h-100px'> <img className='w-[50px] h-[50px]  rounded-2xl' src="ChatGPT Image Aug 10, 2025, 09_59_44 PM.png" alt="" /></Link>
 
         <form > <TextInput type="text" placeholder="
 Search..." rightIcon={AiOutlineSearch} className='hidden lg:inline' /></form>
@@ -25,7 +27,7 @@ Search..." rightIcon={AiOutlineSearch} className='hidden lg:inline' /></form>
 
         <div className='flex gap-2 md:order-2'>
 
-          <Button className='w-12 h-10 hidden md:inline lg:inline color="gray" pill '> <FaMoon /> </Button>
+          <Button className='w-12 h-10 hidden md:inline lg:inline color="gray" pill  ' onClick={() => dispatch(toggleTheme())}> <FaMoon /> </Button>
 
           {currentUser ? (
             <Dropdown arrowIcon={false} inline label={
