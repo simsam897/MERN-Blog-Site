@@ -4,8 +4,8 @@ const ThemeProvider = ({ children }) => {
   const { theme } = useSelector((state) => state.theme)
   return (
     <div className={theme === "dark"
-      ? "bg-black text-gray-200"
-      : "bg-gray-900 text-gray-700"}>
+      ? "bg-black text-gray-200 min-h-screen"
+      : "bg-gray-900 text-gray-700 min-h-screen"}>
       {children}
 
 
