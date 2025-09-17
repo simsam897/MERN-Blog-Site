@@ -11,7 +11,7 @@ import { toggleTheme } from '../redux/theme/themeSlice'
 function Header() {
   const path = useLocation().pathname;
   const dispatch = useDispatch()
-  const { currentUser } = useSelector(state => state.user)
+  const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme)
   return (
     <>
@@ -33,7 +33,15 @@ Search..." rightIcon={AiOutlineSearch} className='hidden lg:inline' /></form>
 
           {currentUser ? (
             <Dropdown arrowIcon={false} inline label={
-              <Avatar alt="user" img={currentUser.profilePicture} rounded className='ml-6' />
+              <Avatar alt="user" img={
+                currentUser.profilePicture?.startsWith('data:image')
+                  ? currentUser.profilePicture
+                  : `data:image/jpeg;base64,${currentUser.profilePicture}`
+              }
+                rounded
+                className='ml-6'
+              />
+
             }>
               <DropdownHeader>
                 <span className='block text-sm font-medium text-red-500'>@{currentUser.username}</span>

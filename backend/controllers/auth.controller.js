@@ -2,6 +2,7 @@ import { User } from "../Models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
+// import { uploadOnCloudinary } from "../utils/cloudinary.js";
 export const signup = async (req, res, next) => {
   // console.log(req.body);
 
@@ -56,7 +57,7 @@ export const signin = async (req, res, next) => {
 
     const token = jwt.sign(
       {
-        userId: validUser._id,
+        id: validUser._id,
       },
       process.env.JWT_SECRET
     );
@@ -77,7 +78,7 @@ export const google = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       const { password, ...rest } = user._doc;
       res
         .status(200)
@@ -99,7 +100,7 @@ export const google = async (req, res, next) => {
         profilePicture: googlePhotoUrl,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.JWT_SECRET);
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       const { password, ...rest } = newUser._doc;
       res
         .status(200)
