@@ -5,11 +5,13 @@ import mongoose from "mongoose";
 
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
-import signRoute from "./routes/auth.route.js";
+import signUpRoute from "./routes/auth.route.js";
+import signInRoute from "./routes/auth.route.js";
 import google from "./routes/auth.route.js";
 
 import cookieParser from "cookie-parser";
 import updateUser from "./routes/user.route.js";
+import deleteUser from "./routes/user.route.js";
 dotenv.config({ path: "./.env" });
 const app = express();
 app.use(express.json());
@@ -30,9 +32,11 @@ app.listen(3000, () => {
 
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
-app.use("api/auth", signRoute);
+app.use("/api/auth", signUpRoute);
+app.use("/api/auth", signInRoute);
 app.use("/api/auth", google);
 app.use("/api/auth", updateUser);
+app.use("/api/auth", deleteUser);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
