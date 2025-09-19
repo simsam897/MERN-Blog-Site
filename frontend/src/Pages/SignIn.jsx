@@ -22,7 +22,7 @@ const SignIn = () => {
     e.preventDefault()
     if (!formData.email || !formData.password) {
       return dispatch(signInFailure('Please fill all the fields'))
-      
+
     }
     try {
       dispatch(signInStart())
@@ -32,7 +32,12 @@ const SignIn = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
 
-      });
+      })
+
+      // await fetch('/api/auth/signin', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData)
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data.message))

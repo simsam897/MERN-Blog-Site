@@ -12,13 +12,19 @@ import google from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import updateUser from "./routes/user.route.js";
 import deleteUser from "./routes/user.route.js";
+import cors from "cors";
 dotenv.config({ path: "./.env" });
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // import path from "path";
-
+app.use(
+  cors({
+    origin: "http://localhost:5173", // <-- set to your frontend origin (include port)
+    credentials: true,
+  })
+);
 mongoose
   .connect(process.env.MONGODB_URL)
   .then(() => console.log("Connected to MongoDB"))
@@ -30,13 +36,13 @@ app.listen(3000, () => {
 
 // routes
 
-app.use("/api/user", userRoute);
+// app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/auth", signUpRoute);
 app.use("/api/auth", signInRoute);
 app.use("/api/auth", google);
-app.use("/api/auth", updateUser);
-app.use("/api/auth", deleteUser);
+app.use("/api/user", updateUser);
+app.use("/api/user", deleteUser);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

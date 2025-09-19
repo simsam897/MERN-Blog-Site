@@ -106,12 +106,13 @@ export const deleteUser = async (req, res, next) => {
     if (!req.user || !req.user.id) {
       return next(errorHandler(401, "Not authenticated"));
     }
-    console.log(req.user.id.toString());
-    console.log(req.params.userId.toString());
 
     if (req.user.id.toString() !== req.params.userId.toString()) {
       return next(errorHandler(403, "You are not allowed to delete this user"));
     }
+
+    console.log(req.user.id.toString());
+    console.log(req.params.userId.toString());
 
     await User.findByIdAndDelete(req.params.userId);
     res.status(200).json("User has been deleted");
